@@ -1799,3 +1799,7 @@
 .fa-medium:before {
   content: "\f23a";
 }
+.fa-python:before {
+  content: "\f3e2"; }
+.fa-r-project:before {
+  content: "\f4f7"; }
