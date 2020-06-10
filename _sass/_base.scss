@@ -27,6 +27,15 @@ a {
     }
 }
 
+.a_alt {
+    @include transition-all;
+    color: white;
+    &:hover,
+    &:focus {
+        color: darken(white, 10%);
+    }
+}
+
 h1,
 h2,
 h3,

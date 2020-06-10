@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+<body id="page-top">
+{% include blog/nav.html %}
+{% include post/blog.html %}
+<section class="bg-light" id="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2 class="section-heading text-center">{{ page.title }}</h2>
+                <hr class="bg-primary">
+                <p class="text-left">{{ page.content }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% include blog/similar-blogs.html %}
+{% include categories.html %}
+{% include aside.html %}
+{% include contact.html %}
+{% include scripts.html %}
+</body>
+
+</html>
