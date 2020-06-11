@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2020-06-10
-type: portfolio
+type: blog
 title: Getting Geospatial Data through REST APIs in Python
 description: Learn how to access geospatial data through the City of Regina's Open GIS endpoints
 tags: [python, api, geospatial]
