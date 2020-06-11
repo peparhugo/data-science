@@ -44,9 +44,13 @@ This will take you this page and you will need to open the `Inspect` function in
 
 Next we'll need to see how the tree API is used in the map. Under `Contents` you'll need to expand the `TreeWebApp` and highlight the `City Trees` layer.
 You'll see a table icon pop-up and click on it. You'll see a list of network requests fire in the `Network` tab of your browser.
-Look for one with `query?f=json...` as the name and select it.
+Look for one with `query?f=json...` as the name and select it. Copy the URL in `Request URL`, we'll need that for our python code.
 
 ## Code
+
+We'll need the `requests` library to get the data from Open GIS. We'll use `pandas` as a convenient way to process the data 
+so it can be converted to a `geopandas` object. Shapely is needed to convert json geometries to `shapely` objects because `geopandas` is built
+on top of `shapely`.
 
 ```python
 import requests
@@ -54,6 +58,11 @@ import pandas
 import geopandas
 import shapely
 ```
+
+Next we'll need to copy the `Request URL` we copied before in the `url` parameter for `requests.get`. Then we'll need to 
+change a couple of the url parameters to get WSG48 coordinates and to get each objects geometry. Update the `returnGeometry` parameter
+to `true` and change the `outSR` parameter to `4326`. You can read more about ArcGIS REST API parameters 
+for Map Service Layers [here](https://opengis.regina.ca/arcgis/sdk/rest/index.html#/Query_Map_Service_Layer/02ss0000000r000000/).
 
 ```python
 resp=requests.get("https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer/0/query?f=json&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=OBJECTID%20ASC&outSR=4326&resultOffset=0")
