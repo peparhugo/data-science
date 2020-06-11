@@ -2,6 +2,7 @@
 layout: post
 date: 2020-06-10
 type: blog
+updated: 2020-06-10
 title: Getting Geospatial Data through REST APIs in Python
 description: Learn how to access geospatial data through the City of Regina's Open GIS endpoints
 tags: [python, api, geospatial]
@@ -19,10 +20,13 @@ your browser to render and visualize. The main difference with an API is instead
 usually in json, csv or xml formats. These formats are managed easily in Python.
 
 Libraries you will need to be familiar with:
+- python
 - requests
 - pandas
 - geopandas
 - shapely
+
+You'll also need to know how to use your browsers inspect function.
 
 ## Data
 
@@ -56,6 +60,8 @@ resp=requests.get("https://opengis.regina.ca/arcgis/rest/services/CGISViewer/Tre
 print(resp.json())
 ```
 ---
+Foot Notes
+
 <a name="myfootnote1">1</a>: [https://en.wikipedia.org/wiki/Representational_state_transfer](https://en.wikipedia.org/wiki/Representational_state_transfer)
 
 <a name="myfootnote2">2</a>: [https://opengis.regina.ca/arcgis/rest/services](https://opengis.regina.ca/arcgis/rest/services)

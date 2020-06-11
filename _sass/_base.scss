@@ -50,7 +50,25 @@ p {
     line-height: 1.5;
     margin-bottom: 20px;
 }
+.user-image {
 
+    position: relative;
+    width: 15rem;
+    height: 15rem;
+
+    border-radius: 100%;
+}
+.user-image-large {
+
+    position: relative;
+    width: 25rem;
+    height: 25rem;
+
+    border-radius: 100%;
+}
+.text-justify{
+    text-align: justify;
+}
 .bg-primary {
     background-color: $theme-primary;
 }

@@ -10,19 +10,30 @@
 <div class="container">
     <div class="row">
 
-
-        {% for post in site.posts reversed limit:4%}
+        {% assign i = 1 %}
+        {% for post in site.posts reversed %}
+        {% if i <= 4 %}
         {% if post.type == "blog" %}
+        {% if post.title != page.title %}
+        {% assign i = i | plus:1 %}
         <div class="col-lg-3 col-md-6 text-center">
             <div class="service-box">
                 <a class="a_alt" href=".{{ post.url }}.html" title="{{ post.title }}">
                     <i class="fas fa-4x fa-file-alt wow bounceIn"></i>
                     <h3>{{ post.title }}</h3>
                 </a>
-                <h4>{{ post.tags | sort | join: ", " }}
+                <h4 class="text-faded" style="font-size:14px">{{ post.description }}
+                </h4>
+                <h4 class="text-faded" style="font-size:14px">Published: {{ post.date | date_to_long_string }}
+                </h4>
+                <h4 class="text-faded" style="font-size:14px">Last Updated: {{ post.updated | date_to_long_string }}
+                </h4>
+                <h4 class="text-faded" style="font-size:14px">Tags: {{ post.tags | sort | join: ", " }}
                 </h4>
             </div>
         </div>
+        {% endif %}
+        {% endif %}
         {% endif %}
         {% endfor %}
 
