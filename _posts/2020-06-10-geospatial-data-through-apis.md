@@ -16,7 +16,7 @@ You can find the notebook for the post [here](https://github.com/peparhugo/data-
 
 First of all, when it comes to APIs, we have to understand how requests and responses work. A data API is similar to a webpage. When you load a webpage, your browser sends a request to a URL, and the server returns the HTML code for
 your browser to render and visualize. The main difference with an API is instead of HTML being returned, and you get data
-usually in JSON, CSV or XML formats. These formats are managed easily in Python.
+usually in JSON, CSV or XML formats. These formats are easy to manage in Python.
 
 Libraries you will need to be familiar with:
 - python
@@ -30,7 +30,7 @@ You'll also need to know how to use your browser's inspect function.
 ## Data
 
 You will need to see how an API fires for some webpages where there is limited documentation. There is limited documentation for the City of Regina's
-GIS data, so we will use the inspect function of our browser to see how the data is loaded into maps.
+GIS data, so we will use the inspect function of our browser to see how the data is retrieved for the map.
 
 First, we'll need to navigate to the City of Regina's Open GIS website [https://opengis.regina.ca/arcgis/rest/services](https://opengis.regina.ca/arcgis/rest/services).
 
@@ -64,18 +64,19 @@ to `true` and change the `outSR` parameter to `4326`. You can read more about Ar
 for Map Service Layers [here](https://opengis.regina.ca/arcgis/sdk/rest/index.html#/Query_Map_Service_Layer/02ss0000000r000000/).
 
 ```python
-resp=requests.get(url="https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer/0/query?outFields=*",
-                     params=dict(
-                         f='json',
-                         returnGeometry='true',
-                         spatialRel='esriSpatialRelIntersects',
-                         where='(1=1) AND (1=1)',
-                         orderByFields='GLOBALID ASC',
-                         outSR=4326,
-                         resultOffset=0,
-                         resultRecordCount=1
-                     ))
-print(resp.json())
+tree_app_url='''https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer/0/query?outFields=*'''
+resp=requests.get(url=tree_app_url,
+                 params=dict(
+                     f='json',
+                     returnGeometry='true',
+                     spatialRel='esriSpatialRelIntersects',
+                     where='(1=1) AND (1=1)',
+                     orderByFields='GLOBALID ASC',
+                     outSR=4326,
+                     resultOffset=0,
+                     resultRecordCount=1
+                 ))
+resp.json()
 ```
 Output:
 ```json
@@ -138,7 +139,7 @@ Output:
  'exceededTransferLimit': True}
 ```
 
-The `features` object is has the data we're looking for and the other fields contain metadata about each field. The example response
+The `features` object has the data. The other fields contain metadata about each field. The example response
 only has 1 record but we'll want to pull all 143,375 records. Most APIs limit the number of records per response, and the 
 open GIS APIs have a limit of 10,000 records.
 
