@@ -26,32 +26,40 @@
         </div>
     </div>
 
-<div class="container">
-    <div class="row">
+    <div class="container">
+        <div class="row">
 
 
-        {% for post in site.tags[page.tag] %}
-        <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box">
-                <a class="a_alt" href=".{{ post.url }}.html" title="{{ post.title }}">
-                    <i class="fas fa-4x fa-file-alt wow bounceIn"></i>
-                    <h3>{{ post.title }}</h3>
-                </a>
+            {% for post in site.tags[page.tag] %}
+            {% if post.type == "blog" %}
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <a class="a_alt" href=".{{ post.url }}.html" title="{{ post.title }}">
+                        <i class="fas fa-4x fa-file-alt wow text-faded"></i>
+                        <h3 >{{ post.title }}</h3>
+                    </a>
+                    <h4 class="text-faded" style="font-size:16px">{{ post.description }}
+                    </h4>
+                    <h4 class="text-faded" style="font-size:14px">Published: {{ post.date | date_to_long_string }}
+                    </h4>
+                    <h4 class="text-faded" style="font-size:14px">Last Updated: {{ post.updated | date_to_long_string }}
+                    </h4>
+                    <h4 class="text-faded" style="font-size:14px">Tags: {{ post.tags | sort | join: ", " }}
+                    </h4>
+                </div>
 
             </div>
-            <h4 class="text-faded" style="font-size:16px">{{ post.description }}
-            </h4>
-            <h4 class="text-faded" style="font-size:14px">Published: {{ post.date | date_to_long_string }}
-            </h4>
-            <h4 class="text-faded" style="font-size:14px">Last Updated: {{ post.updated | date_to_long_string }}
-            </h4>
-            <h4 class="text-faded" style="font-size:14px">Tags: {{ post.tags | sort | join: ", " }}
-            </h4>
-        </div>
-        {% endfor %}
+            {% endif %}
+            {% endfor %}
 
+        </div>
     </div>
-</div>
+    <div class="container">
+        <div class="row">
+            <hr class="primary">
+
+        </div>
+    </div>
 </section>
 
 {% include categories.html %}
